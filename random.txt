@@ -1,0 +1,121 @@
+Client
+class discord.Client(*, loop=None, **options)
+Attributes
+activity
+allowed_mentions
+cached_messages
+emojis
+guilds
+intents
+latency
+loop
+private_channels
+user
+users
+voice_clients
+ws
+Methods
+application_info
+before_identify_hook
+change_presence
+clear
+close
+connect
+create_guild
+delete_invite
+event
+fetch_channel
+fetch_guild
+fetch_guilds
+fetch_invite
+fetch_template
+fetch_user
+fetch_user_profile
+fetch_webhook
+fetch_widget
+get_all_channels
+get_all_members
+get_channel
+get_emoji
+get_guild
+get_user
+is_closed
+is_ready
+is_ws_ratelimited
+login
+logout
+on_error
+request_offline_members
+run
+start
+wait_for
+wait_until_ready
+Represents a client connection that connects to Discord. This class is used to interact with the Discord WebSocket and API.
+
+A number of options can be passed to the Client.
+
+
+________________________________________________________________________________________
+
+
+Parameters
+max_messages (Optional[int]) –
+
+The maximum number of messages to store in the internal message cache. This defaults to 1000. Passing in None disables the message cache.
+
+Changed in version 1.3: Allow disabling the message cache and change the default size to 1000.
+
+loop (Optional[asyncio.AbstractEventLoop]) – The asyncio.AbstractEventLoop to use for asynchronous operations. Defaults to None, in which case the default event loop is used via asyncio.get_event_loop().
+
+connector (aiohttp.BaseConnector) – The connector to use for connection pooling.
+
+proxy (Optional[str]) – Proxy URL.
+
+proxy_auth (Optional[aiohttp.BasicAuth]) – An object that represents proxy HTTP Basic Authorization.
+
+shard_id (Optional[int]) – Integer starting at 0 and less than shard_count.
+
+shard_count (Optional[int]) – The total number of shards.
+
+intents (Intents) –
+
+The intents that you want to enable for the session. This is a way of disabling and enabling certain gateway events from triggering and being sent. If not given, defaults to a regularly constructed Intents class.
+
+New in version 1.5.
+
+member_cache_flags (MemberCacheFlags) –
+
+Allows for finer control over how the library caches members. If not given, defaults to cache as much as possible with the currently selected intents.
+
+New in version 1.5.
+
+fetch_offline_members (bool) – A deprecated alias of chunk_guilds_at_startup.
+
+chunk_guilds_at_startup (bool) –
+
+Indicates if on_ready() should be delayed to chunk all guilds at start-up if necessary. This operation is incredibly slow for large amounts of guilds. The default is True if Intents.members is True.
+
+New in version 1.5.
+
+status (Optional[Status]) – A status to start your presence with upon logging on to Discord.
+
+activity (Optional[BaseActivity]) – An activity to start your presence with upon logging on to Discord.
+
+allowed_mentions (Optional[AllowedMentions]) –
+
+Control how the client handles mentions by default on every message sent.
+
+New in version 1.4.
+
+heartbeat_timeout (float) – The maximum numbers of seconds before timing out and restarting the WebSocket in the case of not receiving a HEARTBEAT_ACK. Useful if processing the initial packets take too long to the point of disconnecting you. The default timeout is 60 seconds.
+
+guild_ready_timeout (float) –
+
+The maximum number of seconds to wait for the GUILD_CREATE stream to end before preparing the member cache and firing READY. The default timeout is 2 seconds.
+
+New in version 1.4.
+
+guild_subscriptions (bool) –
+
+Whether to dispatch presence or typing events. Defaults to True.
+
